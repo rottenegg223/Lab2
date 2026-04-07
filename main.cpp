@@ -1,22 +1,34 @@
-#include<iostream>
-#include<vector>
+#include <iostream>
+#include <vector>
 
 using namespace std;
 
-int N,M;
+int N, M;
 vector<int> vec;
 
-void func(int cnt) {
+void func(int start, int cnt) {
+    if (cnt == M) {
+        for (int i = 0; i < M; i++) {
+            cout << vec[i] << " ";
+        }
+        cout << "\n";
+        return;
+    }
 
-
-
-
-
-
-
+    for (int i = start; i <= N; i++) {
+        vec.push_back(i);
+        func(i + 1, cnt + 1);
+        vec.pop_back();
+    }
 }
 
 int main() {
-   cin >> N >> M;
-   func(0);
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    if (!(cin >> N >> M)) return 0;
+
+    func(1, 0);
+
+    return 0;
 }
